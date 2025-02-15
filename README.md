@@ -39,24 +39,40 @@ This project implements an **/identify API** that consolidates contact informati
 
 {
   "contact": {
+
     "primaryContactId": 1,
+
     "emails": ["lorraine@hillvalley.edu", "mcfly@hillvalley.edu"],
+
     "phoneNumbers": ["123456"],
+
     "secondaryContactIds": [23]
+
   }
+
 }
+
 
 ### **2️⃣ Database Schema (Prisma ORM)**
 
 model Contact {
+
   id            Int      @id @default(autoincrement())
+
   phoneNumber   String?  @unique
+
   email         String?  @unique
+
   linkedId      Int?     // Links to primary contact
+
   linkPrecedence String  // "primary" or "secondary"
+
   createdAt     DateTime @default(now())
+
   updatedAt     DateTime @updatedAt
+
   deletedAt     DateTime?
+
 }
 
 
